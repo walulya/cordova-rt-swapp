@@ -612,7 +612,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             case BaseEnum.CMD_ESC:
             case BaseEnum.CMD_PIN:
                 escPrintBarcode(code);
-                tscPrintBarcode(code);
+                //tscPrintBarcode(code);
                 break;
             case BaseEnum.CMD_TSC:
                 tscPrintBarcode(code);
@@ -773,10 +773,10 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
         barcodeSetting.setBarcodeWidth(3);//accept value:2~6
         barcodeSetting.setQrcodeDotSize(5);//accept value: Esc(1~15), Tsc(1~10)
         //try {
-            escCmd.append(escCmd.getBarcodeCmd(barcodeType, barcodeSetting, barcodeContent));
+            //escCmd.append(escCmd.getBarcodeCmd(barcodeType, barcodeSetting, barcodeContent));
            // escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "EAN13"), barcodeSetting, "123456789"));
             //escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "CODE39"), barcodeSetting, "987654321"));
-            escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "UPC_A"), barcodeSetting, "12909120912"));
+            //escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "UPC_A"), barcodeSetting, "12909120912"));
             escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "ITF"), barcodeSetting, "12345678901234"));
         /*} catch (SdkException e) {
             e.printStackTrace();
@@ -785,10 +785,10 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
         }*/
         escCmd.append(escCmd.getLFCRCmd());
         escCmd.append(escCmd.getLFCRCmd());
-        //escCmd.append(escCmd.getLFCRCmd());
-        //escCmd.append(escCmd.getLFCRCmd());
-        //escCmd.append(escCmd.getLFCRCmd());
-        //escCmd.append(escCmd.getLFCRCmd());
+        escCmd.append(escCmd.getLFCRCmd());
+        escCmd.append(escCmd.getLFCRCmd());
+        escCmd.append(escCmd.getLFCRCmd());
+        escCmd.append(escCmd.getLFCRCmd());
 
         rtPrinter.writeMsgAsync(escCmd.getAppendCmds());
     }
