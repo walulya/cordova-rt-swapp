@@ -673,8 +673,11 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
                 break;
         }
         barcodeSetting.setPosition(new Position(x, y));
-        byte[] barcodeCmd = tscCmd.getBarcodeCmd(barcodeType, barcodeSetting, barcodeContent);
+        byte[] barcodeCmd = tscCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "ITF"), barcodeSetting, barcodeContent);
         tscCmd.append(barcodeCmd);
+
+        tscCmd.append(tscCmd.getLFCRCmd());
+        tscCmd.append(tscCmd.getLFCRCmd());
 
         tscCmd.append(tscCmd.getPrintCopies(1));
         tscCmd.append(tscCmd.getEndCmd());
