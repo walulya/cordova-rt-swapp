@@ -612,6 +612,9 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             case BaseEnum.CMD_ESC:
             case BaseEnum.CMD_PIN:
                 escPrintBarcode(code);
+                tscPrintBarcode(code);
+                cpclPrintBarcode(code);
+                zplPrintBarcode(code);
                 break;
             case BaseEnum.CMD_TSC:
                 tscPrintBarcode(code);
@@ -776,6 +779,8 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "ITF"), barcodeSetting, "12345678901234"));
         } catch (SdkException e) {
             e.printStackTrace();
+            String errMsg = e.getMessage();
+            showToast(errMsg);
         }
         escCmd.append(escCmd.getLFCRCmd());
         escCmd.append(escCmd.getLFCRCmd());
