@@ -777,8 +777,10 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
            // escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "EAN13"), barcodeSetting, "123456789"));
             //escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "CODE39"), barcodeSetting, "987654321"));
             //escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "UPC_A"), barcodeSetting, "12909120912"));
-            escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "ITF"), barcodeSetting, "12345678901234"));
-        /*} catch (SdkException e) {
+            escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "ITF"), barcodeSetting, barcodeContent));
+        /*} 
+        1234567890123
+        catch (SdkException e) {
             e.printStackTrace();
             String errMsg = e.getMessage();
             showToast(errMsg);
