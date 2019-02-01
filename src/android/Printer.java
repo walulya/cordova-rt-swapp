@@ -769,9 +769,9 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
         BarcodeSetting barcodeSetting = new BarcodeSetting();
         barcodeSetting.setBarcodeStringPosition(BarcodeStringPosition.BELOW_BARCODE);
-        barcodeSetting.setHeightInDot(72);//accept value:1~255
-        barcodeSetting.setBarcodeWidth(3);//accept value:2~6
-        barcodeSetting.setQrcodeDotSize(5);//accept value: Esc(1~15), Tsc(1~10)
+        barcodeSetting.setHeightInDot(82);//accept 72 value:1~255
+        barcodeSetting.setBarcodeWidth(2);//accept 3 value:2~6
+        barcodeSetting.setQrcodeDotSize(3);//accept 5 value: Esc(1~15), Tsc(1~10)
         //try {
             //escCmd.append(escCmd.getBarcodeCmd(barcodeType, barcodeSetting, barcodeContent));
            // escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "EAN13"), barcodeSetting, "123456789"));
