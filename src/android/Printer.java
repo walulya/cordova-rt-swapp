@@ -786,11 +786,11 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             showToast(errMsg);
         }*/
         escCmd.append(escCmd.getLFCRCmd());
-        escCmd.append(escCmd.getLFCRCmd());
-        escCmd.append(escCmd.getLFCRCmd());
-        escCmd.append(escCmd.getLFCRCmd());
-        escCmd.append(escCmd.getLFCRCmd());
-        escCmd.append(escCmd.getLFCRCmd());
+        //escCmd.append(escCmd.getLFCRCmd());
+        //escCmd.append(escCmd.getLFCRCmd());
+        //escCmd.append(escCmd.getLFCRCmd());
+        //escCmd.append(escCmd.getLFCRCmd());
+        //escCmd.append(escCmd.getLFCRCmd());
 
         rtPrinter.writeMsgAsync(escCmd.getAppendCmds());
     }
