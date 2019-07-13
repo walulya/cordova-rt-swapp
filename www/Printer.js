@@ -19,6 +19,9 @@ var RTPrinter = {
      logo: function(fnSuccess, fnError){
         exec(fnSuccess, fnError, PLUGIN_NAME, "logo", []);
      },
+     unffe: function(fnSuccess, fnError){
+      exec(fnSuccess, fnError, PLUGIN_NAME, "unffe", []);
+   },
      barcode: function(fnSuccess, fnError, code){
         exec(fnSuccess, fnError, PLUGIN_NAME, "barcode", [code]);
      },

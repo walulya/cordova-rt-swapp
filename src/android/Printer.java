@@ -153,6 +153,10 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             printLogo(callbackContext);
             return true;
         }
+        else if (action.equals("unffe")) {
+            printLogoUNFFE(callbackContext);
+            return true;
+        }
         else if (action.equals("text")) {
             String text = args.getString(0);
             printText(text, callbackContext);
