@@ -813,10 +813,59 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
         callbackContext.success("Logo print completed ");
     }
 
+    private void printLogoUNFFE(CallbackContext callbackContext) {
+        if ( rtPrinter.getConnectState() != ConnectStateEnum.Connected){
+            callbackContext.error("Printer not initialized" ); 
+        }
+
+        try{
+            printImageUNFFE();
+        } catch (SdkException e) {
+            String errMsg = e.getMessage();
+			Log.e(LOG_TAG, errMsg);
+			e.printStackTrace();
+			callbackContext.error(errMsg);
+            return;
+        }        
+        callbackContext.success("Logo print completed ");
+    }
+
 
     private void printImageForInd() throws SdkException {
         Resources activityRes = cordova.getActivity().getResources();
         int logoResId = activityRes.getIdentifier("pebuu_africa", "drawable", cordova.getActivity().getPackageName());
+
+
+        mBitmap = BitmapFactory.decodeResource(activityRes, logoResId);
+        if (mBitmap == null) {//未选择图片
+            showToast("No image has been configured");
+            return;
+        }
+        
+        switch (this.currentCmdType) {
+            case BaseEnum.CMD_PIN:
+                pinPrintImage();
+                break;
+            case BaseEnum.CMD_ESC:
+                escPrintImage();
+                break;
+            case BaseEnum.CMD_TSC:
+                tscPrintImage();
+                break;
+            case BaseEnum.CMD_CPCL:
+                cpclPrintImage();
+                break;
+            case BaseEnum.CMD_ZPL:
+                zplPrintImage();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void printImageUNFFE() throws SdkException {
+        Resources activityRes = cordova.getActivity().getResources();
+        int logoResId = activityRes.getIdentifier("unffe_logo", "drawable", cordova.getActivity().getPackageName());
 
 
         mBitmap = BitmapFactory.decodeResource(activityRes, logoResId);
