@@ -789,7 +789,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             String errMsg = e.getMessage();
             showToast(errMsg);
         }*/
-        escCmd.append(escCmd.getLFCRCmd());
+        //escCmd.append(escCmd.getLFCRCmd());
         //escCmd.append(escCmd.getLFCRCmd());
         //escCmd.append(escCmd.getLFCRCmd());
         //escCmd.append(escCmd.getLFCRCmd());
