@@ -26,12 +26,12 @@
         <!--
         <source-file src="src/android/libs/android-support-annotations.jar" target-dir="libs" />
         -->
-    
+
          <!--  drawable src/android/resources -->
-        <resource-file src="src/android/res/drawable-hdpi/pebuu_africa.jpg" target="res/drawable-hdpi/pebuu_africa.jpg" />
-        <resource-file src="src/android/res/drawable-mdpi/pebuu_africa.jpg" target="res/drawable-mdpi/pebuu_africa.jpg" />
-        <resource-file src="src/android/res/drawable-xhdpi/pebuu_africa.jpg" target="res/drawable-xhdpi/pebuu_africa.jpg" />
-        <resource-file src="src/android/res/drawable-xxhdpi/pebuu_africa.jpg" target="res/drawable-xxhdpi/pebuu_africa.jpg" />
+        <resource-file src="src/android/res/drawable-hdpi/swapp_logo.png" target="res/drawable-hdpi/swapp_logo.png" />
+        <resource-file src="src/android/res/drawable-mdpi/swapp_logo.png" target="res/drawable-mdpi/swapp_logo.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/swapp_logo.png" target="res/drawable-xhdpi/swapp_logo.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/swapp_logo.png" target="res/drawable-xxhdpi/swapp_logo.png" />
 
         <resource-file src="src/android/res/drawable-hdpi/unffe_logo.png" target="res/drawable-hdpi/unffe_logo.png" />
         <resource-file src="src/android/res/drawable-mdpi/unffe_logo.png" target="res/drawable-mdpi/unffe_logo.png" />

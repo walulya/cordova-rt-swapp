@@ -181,7 +181,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
         if (action.equals("performAdd")) {
             int arg1 = args.getInt(0);
             int arg2 = args.getInt(1);
-            /* Indicating success is failure is done by calling the appropriate method on the 
+            /* Indicating success is failure is done by calling the appropriate method on the
             callbackContext.*/
             int result = arg1 + arg2;
             callbackContext.success("result calculated in Java: " + result);
@@ -253,7 +253,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             case BaseEnum.CMD_ESC:
                 printerFactory = new ThermalPrinterFactory();
                 rtPrinter = printerFactory.create();
-                rtPrinter.setPrinterInterface(curPrinterInterface);             
+                rtPrinter.setPrinterInterface(curPrinterInterface);
             break;
             case BaseEnum.CMD_TSC:
                 printerFactory = new LabelPrinterFactory();
@@ -288,12 +288,12 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
     private void getPrinterStatus( CallbackContext callbackContext) {
         if (curPrinterInterface != null && curPrinterInterface.getConfigObject() != null){
-           callbackContext.success("Printer status: " + rtPrinter.getConnectState()); 
+           callbackContext.success("Printer status: " + rtPrinter.getConnectState());
         }
 
         callbackContext.error("Printer not initialized" );
     }
-    
+
 
     private void setConnectionType(int type, CallbackContext callbackContext) {
         String errMsg = null;
@@ -316,7 +316,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 				callbackContext.error(errMsg);
                 set = false;
             break;
-        } 
+        }
         if (set){
             callbackContext.success("Connection type set successfully");
          }
@@ -347,7 +347,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             default:
                 curESCFontType = null;
                 break;
-        } 
+        }
         if (set){
             textSetting.setEscFontType(curESCFontType);
             callbackContext.success("Connection type set successfully");
@@ -374,7 +374,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 			if (pairedDevices.size() > 0) {
 				JSONArray json = new JSONArray();
 				for (BluetoothDevice device : pairedDevices) {
-					
+
 					Hashtable map = new Hashtable();
 					map.put("type", device.getType());
 					map.put("address", device.getAddress());
@@ -416,7 +416,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
                         configObj = new BluetoothEdrConfigBean(currentBTDevice);
                         callbackContext.success("Bluetooth Device Connected: " + currentBTDevice.getName());
 
-                        
+
 						return true;
 					}
 				}
@@ -433,7 +433,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
     private void doConnect(CallbackContext callbackContext) {
         String errMsg = null;
-                   
+
         switch (checkedConType) {
             case BaseEnum.CON_WIFI:
                 //WiFiConfigBean wiFiConfigBean = (WiFiConfigBean) configObj;
@@ -456,7 +456,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             default:
                 errMsg = "No printer type selected";
 				callbackContext.error(errMsg);
-                            
+
                 break;
         }
 
@@ -522,10 +522,10 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
                         break;
                     default:
                         break;
-                }               
+                }
             }
          });
-    
+
     }
 
     @Override
@@ -535,7 +535,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
     private void selfTestPrint(CallbackContext callbackContext) {
         if ( rtPrinter.getConnectState() != ConnectStateEnum.Connected){
-            callbackContext.error("Printer not initialized" ); 
+            callbackContext.error("Printer not initialized" );
         }
         switch (this.currentCmdType) {
             case BaseEnum.CMD_PIN:
@@ -556,7 +556,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             default:
                 break;
         }
-        callbackContext.success(this.currentCmdType+" Printer started: " + rtPrinter.getConnectState()); 
+        callbackContext.success(this.currentCmdType+" Printer started: " + rtPrinter.getConnectState());
 
     }
 
@@ -608,7 +608,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
     }
     private void printBarCode(String code, CallbackContext callbackContext) {
         if ( rtPrinter.getConnectState() != ConnectStateEnum.Connected){
-            callbackContext.error("Printer not initialized" ); 
+            callbackContext.error("Printer not initialized" );
         }
 
         try{
@@ -629,14 +629,14 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
                 break;
             default:
                 break;
-            }   
+            }
         } catch (SdkException e) {
             String errMsg = e.getMessage();
 			Log.e(LOG_TAG, errMsg);
 			e.printStackTrace();
 			callbackContext.error(errMsg);
             return;
-        }        
+        }
         callbackContext.success("Barcode completed ");
     }
 
@@ -768,7 +768,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
         CommonSetting commonSetting = new CommonSetting();
         commonSetting.setAlign(CommonEnum.ALIGN_MIDDLE);
-        escCmd.append(escCmd.getCommonSettingCmd(commonSetting));        
+        escCmd.append(escCmd.getCommonSettingCmd(commonSetting));
 
 
         BarcodeSetting barcodeSetting = new BarcodeSetting();
@@ -782,7 +782,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             //escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "CODE39"), barcodeSetting, "987654321"));
             //escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "UPC_A"), barcodeSetting, "12909120912"));
             escCmd.append(escCmd.getBarcodeCmd(Enum.valueOf(BarcodeType.class, "ITF"), barcodeSetting, barcodeContent));
-        /*} 
+        /*}
         1234567890123
         catch (SdkException e) {
             e.printStackTrace();
@@ -802,7 +802,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
     private void printLogo(CallbackContext callbackContext) {
         if ( rtPrinter.getConnectState() != ConnectStateEnum.Connected){
-            callbackContext.error("Printer not initialized" ); 
+            callbackContext.error("Printer not initialized" );
         }
 
         try{
@@ -813,13 +813,13 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 			e.printStackTrace();
 			callbackContext.error(errMsg);
             return;
-        }        
+        }
         callbackContext.success("Logo print completed ");
     }
 
     private void printLogoUNFFE(CallbackContext callbackContext) {
         if ( rtPrinter.getConnectState() != ConnectStateEnum.Connected){
-            callbackContext.error("Printer not initialized" ); 
+            callbackContext.error("Printer not initialized" );
         }
 
         try{
@@ -830,14 +830,14 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 			e.printStackTrace();
 			callbackContext.error(errMsg);
             return;
-        }        
+        }
         callbackContext.success("Logo print completed ");
     }
 
 
     private void printImageForInd() throws SdkException {
         Resources activityRes = cordova.getActivity().getResources();
-        int logoResId = activityRes.getIdentifier("pebuu_africa", "drawable", cordova.getActivity().getPackageName());
+        int logoResId = activityRes.getIdentifier("swapp_logo", "drawable", cordova.getActivity().getPackageName());
 
 
         mBitmap = BitmapFactory.decodeResource(activityRes, logoResId);
@@ -845,7 +845,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             showToast("No image has been configured");
             return;
         }
-        
+
         switch (this.currentCmdType) {
             case BaseEnum.CMD_PIN:
                 pinPrintImage();
@@ -877,7 +877,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             showToast("No image has been configured");
             return;
         }
-        
+
         switch (this.currentCmdType) {
             case BaseEnum.CMD_PIN:
                 pinPrintImage();
@@ -997,7 +997,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
         if (rtPrinter != null) {
             rtPrinter.writeMsg(zplCmd.getAppendCmds());
         }
- 
+
     }
 
     private void tscPrintImage() throws SdkException {
@@ -1030,7 +1030,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
         }
 
     }
-  
+
    private void cpclPrintImage() throws SdkException {
 
         CmdFactory cpclFactory = new CpclFactory();
@@ -1054,7 +1054,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 
      private void printText(String text, CallbackContext callbackContext) {
         if ( rtPrinter.getConnectState() != ConnectStateEnum.Connected){
-            callbackContext.error("Printer not initialized" ); 
+            callbackContext.error("Printer not initialized" );
         }
 
         printStr = text;
@@ -1080,11 +1080,11 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
 			e.printStackTrace();
 			callbackContext.error(errMsg);
             return;
-        } 
+        }
     }
 
     private void escPrintText() throws UnsupportedEncodingException {
-        
+
             CmdFactory escFac = new EscFactory();
             Cmd escCmd = escFac.create();
             escCmd.append(escCmd.getHeaderCmd());//初始化, Initial
@@ -1102,7 +1102,7 @@ public class Printer extends CordovaPlugin implements PrinterObserver{
             //escCmd.append(escCmd.getLFCRCmd());
 
             rtPrinter.writeMsg(escCmd.getAppendCmds());
-        
+
     }
 
     /**
