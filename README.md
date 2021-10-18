@@ -1,1 +1,1 @@
-# cordova-rt-printer
+# cordova-swap-printer
